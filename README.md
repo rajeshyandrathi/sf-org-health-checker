@@ -19,8 +19,8 @@ Each area gets a score out of 100 and an A–F grade. A check that the logged-in
 
 ## Requirements
 
-- Claude Code (CLI, desktop app or IDE extension)
-- Node.js 20 or later
+- Claude Desktop, or Claude Code (CLI, desktop app or IDE extension)
+- Node.js 20 or later (Claude Code only; Claude Desktop has Node built in)
 - Salesforce CLI (`sf`), logged in to the org you want to check
 
 The Salesforce user needs read access to setup data. A System Administrator works. For a least-privilege user, grant View Setup and Configuration, View All Users, and API Enabled.
@@ -35,14 +35,24 @@ sf org login web --alias my-org
 sf org login web --alias my-sandbox --instance-url https://test.salesforce.com
 ```
 
-Then in Claude Code:
+### Claude Desktop
+
+1. Download `sf-org-health-checker.mcpb` from the [latest release](https://github.com/rajeshyandrathi/sf-org-health-checker/releases/latest).
+2. Double-click the file, or drag it into Claude Desktop (Settings → Extensions).
+3. Click **Install**. The Salesforce CLI path is optional; leave it blank unless the extension cannot find `sf`.
+
+### Claude Code
 
 ```
 /plugin marketplace add rajeshyandrathi/sf-org-health-checker
 /plugin install sf-org-health-checker@sf-org-health-checker
 ```
 
-Restart Claude Code, then ask:
+Restart Claude Code.
+
+### Try it
+
+Ask Claude:
 
 - "Run a full health check on my-org"
 - "Which users have Modify All Data in my-sandbox?"
@@ -75,7 +85,8 @@ The server only sends HTTP GET requests (SOQL queries and the `/limits` endpoint
 ```sh
 npm install
 npm run typecheck
-npm run build                          # bundles src/ into plugin/server/index.cjs
+npm run build                          # bundles src/ into plugin/server/index.cjs and extension/server/index.cjs
+npm run pack                           # builds dist/sf-org-health-checker.mcpb for Claude Desktop
 npm run smoke -- full_health_check my-org   # call a tool through a real MCP client
 claude --plugin-dir ./plugin           # try the plugin in Claude Code
 claude plugin validate ./plugin
@@ -94,6 +105,7 @@ plugin/
   .mcp.json         Starts the bundled server
   skills/org-health-check/SKILL.md
   server/index.cjs  Build output
+extension/manifest.json   Claude Desktop extension manifest
 .claude-plugin/marketplace.json
 ```
 

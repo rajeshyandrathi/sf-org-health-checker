@@ -8,7 +8,8 @@
     "typecheck": "tsc",
     "start": "node plugin/server/index.cjs",
     "inspect": "npx @modelcontextprotocol/inspector node plugin/server/index.cjs",
-    "smoke": "node scripts/smoke.mjs"
+    "smoke": "node scripts/smoke.mjs",
+    "pack": "npm run build && mkdir -p dist && mcpb pack extension dist/sf-org-health-checker.mcpb"
   },
   "author": "Rajesh Yandrathi",
   "license": "MIT",
@@ -18,6 +19,7 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@anthropic-ai/mcpb": "^2.1.2",
     "@types/node": "^26.6.6",
     "esbuild": "^0.28.2",
     "typescript": "^7.0.2"

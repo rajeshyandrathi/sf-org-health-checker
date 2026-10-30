@@ -1,5 +1,5 @@
 import { build } from "esbuild";
-import { readFileSync } from "node:fs";
+import { copyFileSync, mkdirSync, readFileSync } from "node:fs";
 
 const { version } = JSON.parse(readFileSync("package.json", "utf8"));
 
@@ -15,4 +15,6 @@ await build({
   define: { __VERSION__: JSON.stringify(version) },
   banner: { js: "#!/usr/bin/env node" },
 });
-console.log(`Built plugin/server/index.cjs (v${version})`);
+mkdirSync("extension/server", { recursive: true });
+copyFileSync("plugin/server/index.cjs", "extension/server/index.cjs");
+console.log(`Built plugin/server/index.cjs and extension/server/index.cjs (v${version})`);

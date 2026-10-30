@@ -1,0 +1,56 @@
+{
+  "manifest_version": "0.3",
+  "name": "sf-org-health-checker",
+  "display_name": "SF Org Health Checker",
+  "version": "0.1.0",
+  "description": "Read-only Salesforce org health checks: security, org limits, Apex code, automation, licenses and unused components.",
+  "long_description": "Ask Claude to health check any Salesforce org you are logged in to with the Salesforce CLI (sf). You get a scored report with findings and fixes covering the Security Health Check score and risky settings, admin users, org limits and storage, Apex test coverage, Process Builder and Workflow Rule migration, flows, license usage, and unused reports, profiles, permission sets and queues. Every check is read-only and runs on your computer. Requires the Salesforce CLI, logged in with `sf org login web`.",
+  "author": {
+    "name": "Rajesh Yandrathi",
+    "url": "https://github.com/rajeshyandrathi"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rajeshyandrathi/sf-org-health-checker"
+  },
+  "homepage": "https://github.com/rajeshyandrathi/sf-org-health-checker",
+  "documentation": "https://github.com/rajeshyandrathi/sf-org-health-checker#readme",
+  "support": "https://github.com/rajeshyandrathi/sf-org-health-checker/issues",
+  "server": {
+    "type": "node",
+    "entry_point": "server/index.cjs",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/server/index.cjs"],
+      "env": {
+        "SF_CLI_PATH": "${user_config.sf_cli_path}"
+      }
+    }
+  },
+  "tools": [
+    { "name": "list_orgs", "description": "List the Salesforce orgs the Salesforce CLI is logged in to" },
+    { "name": "full_health_check", "description": "Run every health check and return a scored report" },
+    { "name": "check_security", "description": "Health Check score, risky settings, admin users, dormant users" },
+    { "name": "check_limits", "description": "Storage, API and other org limits at 75% or more" },
+    { "name": "check_code", "description": "Apex coverage, old API versions, multiple triggers, failed async jobs" },
+    { "name": "check_automation", "description": "Process Builder, Workflow Rules, inactive and crowded flows" },
+    { "name": "check_licenses", "description": "Full, under-used and expiring licenses, frozen users" },
+    { "name": "check_unused", "description": "Stale reports and templates, unused permission sets, profiles and queues" }
+  ],
+  "user_config": {
+    "sf_cli_path": {
+      "type": "string",
+      "title": "Salesforce CLI path (optional)",
+      "description": "Full path to the sf binary. Leave blank to find it automatically, for example /opt/homebrew/bin/sf.",
+      "required": false,
+      "default": ""
+    }
+  },
+  "keywords": ["salesforce", "health check", "security", "apex", "admin", "audit"],
+  "license": "MIT",
+  "privacy_policies": ["https://github.com/rajeshyandrathi/sf-org-health-checker/blob/main/PRIVACY.md"],
+  "compatibility": {
+    "platforms": ["darwin", "win32", "linux"],
+    "runtimes": { "node": ">=20.0.0" }
+  }
+}

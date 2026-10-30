@@ -1,4 +1,6 @@
 import { execFile } from "node:child_process";
+import { homedir } from "node:os";
+import { delimiter, join } from "node:path";
 import { promisify } from "node:util";
 
 const execFileAsync = promisify(execFile);
@@ -7,6 +9,16 @@ const execFileAsync = promisify(execFile);
 const SF_BIN = process.env.SF_CLI_PATH || "sf";
 const CONNECTION_TTL_MS = 10 * 60 * 1000;
 const DEFAULT_MAX_RECORDS = 2000;
+
+/**
+ * Desktop apps start servers without the user's shell PATH, so add the usual
+ * install locations for sf (and the node it runs on).
+ */
+const EXTRA_PATH_DIRS =
+  process.platform === "win32"
+    ? [join(process.env.ProgramFiles ?? "C:\\Program Files", "sf", "bin"), join(process.env.APPDATA ?? "", "npm")]
+    : ["/opt/homebrew/bin", "/usr/local/bin", join(homedir(), ".npm-global", "bin"), join(homedir(), ".local", "bin"), "/usr/bin", "/bin"];
+const SF_PATH = [...(process.env.PATH ?? "").split(delimiter), ...EXTRA_PATH_DIRS].filter(Boolean).join(delimiter);
 
 export interface OrgSummary {
   alias?: string;
@@ -31,7 +43,7 @@ async function sf<T>(args: string[]): Promise<T> {
     ({ stdout } = await execFileAsync(SF_BIN, [...args, "--json"], {
       maxBuffer: 50 * 1024 * 1024,
       shell: process.platform === "win32",
-      env: { ...process.env, SF_DISABLE_COLORS: "true", SF_AUTOUPDATE_DISABLE: "true" },
+      env: { ...process.env, PATH: SF_PATH, SF_DISABLE_COLORS: "true", SF_AUTOUPDATE_DISABLE: "true" },
     }));
   } catch (err: any) {
     if (err?.code === "ENOENT") {
