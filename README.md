@@ -48,7 +48,14 @@ sf org login web --alias my-sandbox --instance-url https://test.salesforce.com
 /plugin install sf-org-health-checker@sf-org-health-checker
 ```
 
-Restart Claude Code.
+In the VS Code or JetBrains extension, where `/plugin` is not available, run these in a terminal instead:
+
+```sh
+claude plugin marketplace add rajeshyandrathi/sf-org-health-checker
+claude plugin install sf-org-health-checker@sf-org-health-checker
+```
+
+Restart Claude Code (or reload the IDE window).
 
 ### Try it
 
