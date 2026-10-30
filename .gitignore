@@ -5,3 +5,4 @@ node_modules/
 .sfdx/
 extension/server/
 dist/
+extension/icon.png

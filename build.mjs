@@ -17,4 +17,5 @@ await build({
 });
 mkdirSync("extension/server", { recursive: true });
 copyFileSync("plugin/server/index.cjs", "extension/server/index.cjs");
+copyFileSync("assets/icon.png", "extension/icon.png");
 console.log(`Built plugin/server/index.cjs and extension/server/index.cjs (v${version})`);

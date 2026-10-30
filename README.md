@@ -1,3 +1,5 @@
+<p align="center"><img src="assets/icon.png" alt="SF Org Health Checker icon" width="128"></p>
+
 # SF Org Health Checker
 
 A read-only Salesforce org health checker for Claude Code. Ask Claude "run a health check on my org" and get a scored report covering security, org limits, Apex code, automation, licenses and unused components, with a fix for each finding.
@@ -113,6 +115,7 @@ plugin/
   skills/org-health-check/SKILL.md
   server/index.cjs  Build output
 extension/manifest.json   Claude Desktop extension manifest
+assets/icon.svg           Icon source (icon.png is rendered from it)
 .claude-plugin/marketplace.json
 ```
 

@@ -1,6 +1,6 @@
 {
   "name": "sf-org-health-checker",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Read-only Salesforce org health checks: security, org limits, Apex code, automation, licenses and unused components. Uses your local Salesforce CLI login.",
   "author": {
     "name": "Rajesh Yandrathi"
@@ -8,5 +8,12 @@
   "homepage": "https://github.com/rajeshyandrathi/sf-org-health-checker",
   "repository": "https://github.com/rajeshyandrathi/sf-org-health-checker",
   "license": "MIT",
-  "keywords": ["salesforce", "health-check", "security", "apex", "admin", "audit"]
+  "keywords": [
+    "salesforce",
+    "health-check",
+    "security",
+    "apex",
+    "admin",
+    "audit"
+  ]
 }

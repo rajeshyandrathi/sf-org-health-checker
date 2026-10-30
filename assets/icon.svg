@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1B96FF"/>
+      <stop offset="1" stop-color="#0B5CAB"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <!-- Cloud -->
+  <g fill="#FFFFFF">
+    <circle cx="200" cy="222" r="62"/>
+    <circle cx="282" cy="205" r="82"/>
+    <circle cx="150" cy="282" r="58"/>
+    <circle cx="364" cy="272" r="66"/>
+    <rect x="150" y="250" width="214" height="90" rx="10"/>
+    <circle cx="150" cy="282" r="58"/>
+  </g>
+  <!-- Health pulse -->
+  <polyline points="128,286 200,286 226,236 258,332 286,262 306,286 386,286"
+            fill="none" stroke="#0B5CAB" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Check badge -->
+  <circle cx="378" cy="376" r="66" fill="#2E844A" stroke="#FFFFFF" stroke-width="14"/>
+  <polyline points="348,378 370,400 410,354" fill="none" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

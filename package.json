@@ -1,6 +1,6 @@
 {
   "name": "sf-org-health-checker",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Read-only Salesforce org health checker for Claude: security, limits, Apex, automation, licenses and unused components.",
   "main": "plugin/server/index.cjs",
   "scripts": {
