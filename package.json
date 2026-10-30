@@ -1,0 +1,29 @@
+{
+  "name": "sf-org-health-checker",
+  "version": "0.1.0",
+  "description": "Read-only Salesforce org health checker for Claude: security, limits, Apex, automation, licenses and unused components.",
+  "main": "plugin/server/index.cjs",
+  "scripts": {
+    "build": "node build.mjs",
+    "typecheck": "tsc",
+    "start": "node plugin/server/index.cjs",
+    "inspect": "npx @modelcontextprotocol/inspector node plugin/server/index.cjs",
+    "smoke": "node scripts/smoke.mjs"
+  },
+  "author": "Rajesh Yandrathi",
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "esbuild": "^0.28.2",
+    "typescript": "^7.0.2"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  }
+}

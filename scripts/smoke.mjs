@@ -1,0 +1,10 @@
+import { Client } from "@modelcontextprotocol/sdk/client/index.js";
+import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
+const [tool = "full_health_check", org] = process.argv.slice(2);
+const client = new Client({ name: "smoke", version: "0" });
+await client.connect(new StdioClientTransport({ command: "node", args: ["plugin/server/index.cjs"] }));
+const { tools } = await client.listTools();
+console.error("tools:", tools.map((t) => t.name).join(", "));
+const res = await client.callTool({ name: tool, arguments: org ? { org } : {} });
+console.log(res.content[0].text);
+await client.close();

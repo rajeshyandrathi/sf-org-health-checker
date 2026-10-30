@@ -1,0 +1,16 @@
+{
+  "name": "sf-org-health-checker",
+  "owner": {
+    "name": "Rajesh Yandrathi"
+  },
+  "metadata": {
+    "description": "Salesforce org health checking plugins by Rajesh Yandrathi."
+  },
+  "plugins": [
+    {
+      "name": "sf-org-health-checker",
+      "source": "./plugin",
+      "description": "Read-only Salesforce org health checks: security, org limits, Apex code, automation, licenses and unused components."
+    }
+  ]
+}
